@@ -21,7 +21,7 @@ struct VehicleListInfo {
 }
 
 struct VehicleListManager {
-    var access_token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im5naGlhbnQiLCJ1c2VyX2lkIjoiNWMxMjAwMTUxMzk0YzgzNWNlZWMyOGVlIiwibmFtZSI6Ik7DtG5nIFRydW5nIE5naMSpYSIsInN0YXR1cyI6InZlcmlmaWVkIiwiaWF0IjoxNTc3MjQ1Mjc1fQ.NXTjm4jG6UlDVYUUdXWvXobPgWfGYhRNLeTuNnbx3NM"
+    var access_token = ""
     var contentType = "application/x-www-form-urlencoded"
     
     var delegate: VehicleListManagerDelegate?
@@ -42,16 +42,13 @@ struct VehicleListManager {
             
             let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
                 if let errors = error {
-                    //print("e dm loi day nay")
                     print(errors)
                     return
                 }
                 
-                //print(String(data: data!, encoding: .utf8)!)
                 if let safeData = data {
                     let vehicleList = self.parseListVehicle(safeData)
                     self.delegate?.updateVehicleList(with: vehicleList)
-                    //print(vehicleList)
                 }
                 
             }
@@ -93,7 +90,7 @@ protocol VehicleDetailManagerDelegate {
 }
 
 struct VehicleDetailManager {
-    var access_token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im5naGlhbnQiLCJ1c2VyX2lkIjoiNWMxMjAwMTUxMzk0YzgzNWNlZWMyOGVlIiwibmFtZSI6Ik7DtG5nIFRydW5nIE5naMSpYSIsInN0YXR1cyI6InZlcmlmaWVkIiwiaWF0IjoxNTc3MjQ1Mjc1fQ.NXTjm4jG6UlDVYUUdXWvXobPgWfGYhRNLeTuNnbx3NM"
+    var access_token = ""
     var contentType = "application/x-www-form-urlencoded"
     
     var delegate: VehicleDetailManagerDelegate?
@@ -120,7 +117,6 @@ struct VehicleDetailManager {
                     return
                 }
                 
-                //print(String(data: data!, encoding: .utf8)!)
                 if let safeData = data {
                     let vehicle = self.parseVehicleDetail(safeData)
                     self.delegate?.updateUI(with: vehicle)
